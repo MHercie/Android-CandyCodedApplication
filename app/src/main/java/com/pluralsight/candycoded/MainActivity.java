@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
+
     AsyncHttpClient client = new AsyncHttpClient();
     client.get("https://vast-brushlands-23089.herokuapp.com/main/api",
         new TextHttpResponseHandler() {
@@ -72,7 +74,12 @@ public class MainActivity extends AppCompatActivity {
           }
         });
   }
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    Intent infoIntent = new Intent(this, InfoActivity.class);
+    startActivity(infoIntent);
 
+    return super.onOptionsItemSelected(item);
+  }
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     MenuInflater inflater = getMenuInflater();
