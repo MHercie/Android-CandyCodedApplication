@@ -1,9 +1,15 @@
 package com.pluralsight.candycoded;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
+
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -18,9 +24,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @PrepareForTest({AppCompatActivity.class, MainActivity.class, Intent.class, InfoActivity.class})
 @RunWith(PowerMockRunner.class)
+
 public class _1_StartTheStoreInformationActivity {
     private static MainActivity activity;
 
@@ -28,6 +36,17 @@ public class _1_StartTheStoreInformationActivity {
     private static boolean called_Intent = false;
     private static boolean called_Intent_correctly = false;
     private static boolean called_startActivity = false;
+
+    public void createMapIntent(View view) throws Exception {
+        Uri uri = Uri.parse("geo:0,0?q=618 E South St Orlando, FL 32801");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        if (mapIntent.resolveActivity(activity.getPackageManager()) != null) {
+            startactivity_infoactivity(mapIntent);
+        }
+    }
+
+
 
     // Mockito setup
     @BeforeClass
@@ -87,7 +106,10 @@ public class _1_StartTheStoreInformationActivity {
         } catch (Throwable e) {
             //e.printStackTrace();
         }
+
+
     }
+
 
     @Test
     public void mainactivity_onoptionitemselected_return_super() throws Exception {
@@ -103,7 +125,7 @@ public class _1_StartTheStoreInformationActivity {
     }
 
     @Test
-    public void startactivity_infoactivity() throws Exception {
+    public void startactivity_infoactivity(Intent mapIntent) throws Exception {
         override_mainactivity_onoptionitemselected();
         assertTrue("The method startActivity() was not called.", called_startActivity);
     }
