@@ -37,14 +37,7 @@ public class _1_StartTheStoreInformationActivity {
     private static boolean called_Intent_correctly = false;
     private static boolean called_startActivity = false;
 
-    public void createMapIntent(View view) throws Exception {
-        Uri uri = Uri.parse("geo:0,0?q=618 E South St Orlando, FL 32801");
-        Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri);
-        mapIntent.setPackage("com.google.android.apps.maps");
-        if (mapIntent.resolveActivity(activity.getPackageManager()) != null) {
-            startactivity_infoactivity(mapIntent);
-        }
-    }
+
 
 
 
@@ -125,7 +118,7 @@ public class _1_StartTheStoreInformationActivity {
     }
 
     @Test
-    public void startactivity_infoactivity(Intent mapIntent) throws Exception {
+    public void startactivity_infoactivity() throws Exception {
         override_mainactivity_onoptionitemselected();
         assertTrue("The method startActivity() was not called.", called_startActivity);
     }
